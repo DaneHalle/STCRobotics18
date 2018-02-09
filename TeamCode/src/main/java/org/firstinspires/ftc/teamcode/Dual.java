@@ -28,7 +28,7 @@ public class Dual extends LinearOpMode {
         double mult = 1.0;
 
         //sets initial position for servos
-        robot.theClaw.setPosition(.25);
+        robot.theClaw.setPosition(.75);
         robot.rightExtend.setPosition(0);
         robot.leftExtend.setPosition(1);
         robot.ben.setPower(0);
@@ -50,13 +50,13 @@ public class Dual extends LinearOpMode {
 
             //strafe
             }else if(gamepad1.left_bumper){
-                robot.backLeft.setPower(-4);
-                robot.backRight.setPower(4);
+                robot.backLeft.setPower(-2);
+                robot.backRight.setPower(2);
                 robot.frontLeft.setPower(1);
                 robot.frontRight.setPower(-1);
             }else if(gamepad1.right_bumper){
-                robot.backLeft.setPower(4);
-                robot.backRight.setPower(-4);
+                robot.backLeft.setPower(2);
+                robot.backRight.setPower(-2);
                 robot.frontLeft.setPower(-1);
                 robot.frontRight.setPower(1);
 
@@ -117,9 +117,9 @@ public class Dual extends LinearOpMode {
 
             //The claw o' Death
             if (gamepad2.right_bumper) {
-                robot.theClaw.setPosition(.944444);
-            } else {
                 robot.theClaw.setPosition(0);
+            } else {
+                robot.theClaw.setPosition(1);
             }
 
             //Linear gear arm!!!!!!!

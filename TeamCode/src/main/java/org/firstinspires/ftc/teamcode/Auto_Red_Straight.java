@@ -122,7 +122,7 @@ public class Auto_Red_Straight extends LinearOpMode {
             robot.backRight.setPower(-speed);
             robot.frontLeft.setPower(speed);
             robot.frontRight.setPower(-speed);
-        }while(getRuntime()<=currentTime+secs); 
+        }while(getRuntime()<=currentTime+secs);
             robot.frontLeft.setPower(0);
             robot.frontRight.setPower(0);
             robot.backLeft.setPower(0);
