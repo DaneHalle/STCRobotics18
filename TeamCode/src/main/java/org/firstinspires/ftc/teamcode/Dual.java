@@ -17,10 +17,11 @@ public class Dual extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-        robot.init(hardwareMap);
+
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
+        robot.init(hardwareMap);
         runtime.reset();
 
         double right;

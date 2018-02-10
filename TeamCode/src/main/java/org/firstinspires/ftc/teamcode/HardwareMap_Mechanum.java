@@ -80,7 +80,7 @@ public class HardwareMap_Mechanum
         leftExtend = hwMap.servo.get("leftExtend");
         rightExtend = hwMap.servo.get("rightExtend");
         ben = hwMap.crservo.get("ben");
-        theClaw.setPosition(0);
+        theClaw.setPosition(1);
         flicker.setPosition(0);
         leftExtend.setPosition(.25);
         rightExtend.setPosition(.75);

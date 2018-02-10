@@ -62,7 +62,7 @@ public class Auto_Red_Straight extends LinearOpMode {
         robot.leftExtend.setPosition(1);
         robot.flicker.setPosition(0);
 
-        glyph(2.5, 1);
+        glyph(2.5, 1.5);
         glyph(-1, 1.5);
         hold();
         robot.rightExtend.setPosition(1);
@@ -88,9 +88,9 @@ public class Auto_Red_Straight extends LinearOpMode {
             go(-.5,1);
         }
         go(-.5, 1.5);
-        turn(.5,.75);
+        turn(-.5,.75);
         go(-.5,1);
-        turn(-.5,.5);
+        turn(-.5,.75);
         go(.5, 1.5);
         robot.rightExtend.setPosition(0);
         robot.leftExtend.setPosition(1);
@@ -101,46 +101,50 @@ public class Auto_Red_Straight extends LinearOpMode {
     /**
      * Driving helper methods
      */
-    private void doNothing() {
+    private void doNothing() throws InterruptedException {
         final double x = getRuntime();
         while (getRuntime()<=x+2) {
+            waitOneFullHardwareCycle();
             //do nothing
         }
     }
 
-    private void hold() {
+    private void hold() throws  InterruptedException{
         final double x=getRuntime()+.5;
         while(getRuntime()<=x){
+            waitOneFullHardwareCycle();
             //hold
         }
     }
 
-    private void turn(double speed, double secs) {
+    private void turn(double speed, double secs) throws InterruptedException {
         double currentTime = getRuntime();
         do{
             robot.backLeft.setPower(speed);
             robot.backRight.setPower(-speed);
             robot.frontLeft.setPower(speed);
             robot.frontRight.setPower(-speed);
+            waitOneFullHardwareCycle();
         }while(getRuntime()<=currentTime+secs);
-            robot.frontLeft.setPower(0);
-            robot.frontRight.setPower(0);
-            robot.backLeft.setPower(0);
-            robot.backRight.setPower(0);
+        robot.frontLeft.setPower(0);
+        robot.frontRight.setPower(0);
+        robot.backLeft.setPower(0);
+        robot.backRight.setPower(0);
     }
 
-    private void go(double speed, double secs) {
+    private void go(double speed, double secs) throws InterruptedException {
         double currentTime = getRuntime();
         do {
             robot.frontLeft.setPower(speed);
             robot.frontRight.setPower(speed);
             robot.backLeft.setPower(speed);
             robot.backRight.setPower(speed);
+            waitOneFullHardwareCycle();
         }while(getRuntime()<=currentTime+secs);
-            robot.frontLeft.setPower(0);
-            robot.frontRight.setPower(0);
-            robot.backLeft.setPower(0);
-            robot.backRight.setPower(0);
+        robot.frontLeft.setPower(0);
+        robot.frontRight.setPower(0);
+        robot.backLeft.setPower(0);
+        robot.backRight.setPower(0);
     }
 
     private void strafeLeft(double speed, double time) throws InterruptedException {
@@ -150,11 +154,12 @@ public class Auto_Red_Straight extends LinearOpMode {
             robot.backRight.setPower(speed);
             robot.frontLeft.setPower(speed);
             robot.frontRight.setPower(-speed);
+            waitOneFullHardwareCycle();
         }while(getRuntime()<=currentTime+time);
-            robot.backLeft.setPower(0);
-            robot.backRight.setPower(0);
-            robot.frontLeft.setPower(0);
-            robot.frontRight.setPower(0);
+        robot.backLeft.setPower(0);
+        robot.backRight.setPower(0);
+        robot.frontLeft.setPower(0);
+        robot.frontRight.setPower(0);
     }
 
     private void strafeRight(double speed, double distance) throws InterruptedException {
@@ -164,28 +169,22 @@ public class Auto_Red_Straight extends LinearOpMode {
             robot.backRight.setPower(-speed);
             robot.frontLeft.setPower(-speed);
             robot.frontRight.setPower(speed);
+            waitOneFullHardwareCycle();
         }while(getRuntime()<=currentTime+distance);
-            robot.frontLeft.setPower(0);
-            robot.frontRight.setPower(0);
-            robot.backLeft.setPower(0);
-            robot.backRight.setPower(0);
+        robot.frontLeft.setPower(0);
+        robot.frontRight.setPower(0);
+        robot.backLeft.setPower(0);
+        robot.backRight.setPower(0);
     }
 
     private void glyph(double pow, double time) throws InterruptedException {
         double currentTime = getRuntime();
         do{
             robot.extender.setPower(pow);
+            waitOneFullHardwareCycle();
         }while(getRuntime()<=currentTime+time);
-            robot.extender.setPower(0);
+        robot.extender.setPower(0);
     }
 
-    private void shimmy(double pow, double time) throws InterruptedException {
-        double currentTime = getRuntime();
-        do{
-            strafeRight(pow, time/4);
-            go(pow, time/4);
-            strafeLeft(pow, time/4);
-            go(pow, time/4);
-        }while(getRuntime()<=currentTime+time);
-    }
+
 }
