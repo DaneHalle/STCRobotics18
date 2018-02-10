@@ -87,8 +87,9 @@ public class Auto_Red_Angle extends LinearOpMode {
             hold();
             go(-.5,1);
         }
-        go(.5, 1.25);
-        strafeLeft(1, .9);
+        go(-.5, 1.25);
+        strafeRight(1, 1);
+        turn(.5,4);
         go(.5,1.25);
         robot.rightExtend.setPosition(0);
         robot.leftExtend.setPosition(1);
